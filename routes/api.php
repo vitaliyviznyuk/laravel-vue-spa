@@ -1,6 +1,11 @@
 <?php
+/**
+ * @author Vitaliy Viznyuk <vitaliyviznyuk@gmail.com>
+ * @copyright Copyright (c) 2019 Vitaliy Viznyuk
+ */
 
-use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/users', static function () {
+    return factory(User::class, 10)->make();
 });

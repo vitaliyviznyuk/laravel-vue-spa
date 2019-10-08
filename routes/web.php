@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Vitaliy Viznyuk <vitaliyviznyuk@gmail.com>
+ * @copyright Copyright (c) 2019 Vitaliy Viznyuk
+ */
 
 /*
 |--------------------------------------------------------------------------
