@@ -19,5 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users', static function () {
+    if (random_int(1, 10) < 3) {
+        abort(500, 'We could not retrieve the users');
+    }
+
     return factory(User::class, 10)->make();
 });

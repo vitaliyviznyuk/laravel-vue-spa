@@ -1886,6 +1886,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1907,6 +1913,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users').then(function (response) {
         _this.loading = false;
         _this.users = response.data;
+      })["catch"](function (error) {
+        _this.loading = false;
+        _this.error = error.response.data.message || error.message;
       });
     }
   }
@@ -2522,7 +2531,22 @@ var render = function() {
     _vm._v(" "),
     _vm.error
       ? _c("div", { staticClass: "error" }, [
-          _vm._v("\n        " + _vm._s(_vm.error) + "\n    ")
+          _c("p", [_vm._v(_vm._s(_vm.error))]),
+          _vm._v(" "),
+          _c("p", [
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.fetchData($event)
+                  }
+                }
+              },
+              [_vm._v("\n                Try Again\n            ")]
+            )
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -17860,8 +17884,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\server\data\htdocs\laravel-vue-spa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\server\data\htdocs\laravel-vue-spa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/devseonet8/projects/laravel-vue-spa/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/devseonet8/projects/laravel-vue-spa/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
