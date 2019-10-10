@@ -1,6 +1,7 @@
 <template>
     <div>
-        <form @submit.prevent="onSubmit($event)">
+        <div v-if="! loaded">Loading...</div>
+        <form @submit.prevent="onSubmit($event)" v-else>
             <div class="form-group">
                 <label for="user_name">Name</label>
                 <input id="user_name" v-model="user.name" />
@@ -16,9 +17,12 @@
     </div>
 </template>
 <script>
+    import api from '../api/users';
+
     export default {
         data() {
             return {
+                loaded: false,
                 user: {
                     id: null,
                     name: "",
@@ -32,7 +36,10 @@
             }
         },
         created() {
-            // @todo load user details
+            api.find(this.$route.params.id).then((response) => {
+                this.loaded = true;
+                this.user = response.data.data;
+            });
         }
     };
 </script>
