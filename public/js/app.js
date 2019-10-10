@@ -1912,8 +1912,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../api/users */ "./resources/js/api/users.js");
 //
 //
 //
@@ -1940,9 +1939,7 @@ var getUsers = function getUsers(page, callback) {
   var params = {
     page: page
   };
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users', {
-    params: params
-  }).then(function (response) {
+  _api_users__WEBPACK_IMPORTED_MODULE_0__["default"].all(params).then(function (response) {
     callback(null, response.data);
   })["catch"](function (error) {
     callback(error, error.response.data);
@@ -17797,6 +17794,34 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ "./resources/js/api/users.js":
+/*!***********************************!*\
+  !*** ./resources/js/api/users.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  all: function all(params) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users', {
+      params: params
+    });
+  },
+  find: function find(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/".concat(id));
+  },
+  update: function update(id, data) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/users/".concat(id), data);
+  }
+});
 
 /***/ }),
 
