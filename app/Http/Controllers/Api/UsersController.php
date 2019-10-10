@@ -20,4 +20,13 @@ class UsersController extends Controller
     {
         return UserResource::collection(User::paginate(10));
     }
+
+    /**
+     * @param User $user
+     * @return UserResource
+     */
+    public function show(User $user): UserResource
+    {
+        return new UserResource($user);
+    }
 }
