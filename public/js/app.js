@@ -1886,6 +1886,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1893,6 +1903,11 @@ __webpack_require__.r(__webpack_exports__);
       message: null,
       loaded: false,
       saving: false,
+      error: null,
+      errors: {
+        name: null,
+        email: null
+      },
       user: {
         id: null,
         name: "",
@@ -1909,16 +1924,28 @@ __webpack_require__.r(__webpack_exports__);
         name: this.user.name,
         email: this.user.email
       }).then(function (response) {
+        _this.clearErrors();
+
         _this.message = 'User updated';
         setTimeout(function () {
-          return _this.message = null;
+          return history.back();
         }, 2000);
         _this.user = response.data.data;
       })["catch"](function (error) {
-        console.log(error);
+        _this.error = error.response.data.message;
+        _this.errors.name = error.response.data.errors.hasOwnProperty('name') ? error.response.data.errors.name[0] : null;
+        _this.errors.email = error.response.data.errors.hasOwnProperty('email') ? error.response.data.errors.email[0] : null;
       }).then(function (_) {
         return _this.saving = false;
       });
+    },
+    cancel: function cancel() {
+      history.back();
+    },
+    clearErrors: function clearErrors() {
+      this.error = null;
+      this.errors.name = null;
+      this.errors.email = null;
     }
   },
   created: function created() {
@@ -3315,6 +3342,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm.error
+      ? _c("div", { staticClass: "error" }, [
+          _c("p", [_vm._v(_vm._s(_vm.error))])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _vm.message
       ? _c("div", { staticClass: "alert" }, [_vm._v(_vm._s(_vm.message))])
       : _vm._e(),
@@ -3354,7 +3387,13 @@ var render = function() {
                     _vm.$set(_vm.user, "name", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.name
+                ? _c("div", { staticClass: "error" }, [
+                    _c("p", [_vm._v(_vm._s(_vm.errors.name))])
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -3379,7 +3418,13 @@ var render = function() {
                     _vm.$set(_vm.user, "email", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors.email
+                ? _c("div", { staticClass: "error" }, [
+                    _c("p", [_vm._v(_vm._s(_vm.errors.email))])
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -3387,6 +3432,20 @@ var render = function() {
                 "button",
                 { attrs: { type: "submit", disabled: _vm.saving } },
                 [_vm._v("Update")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  attrs: { disabled: _vm.saving },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.cancel($event)
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
               )
             ])
           ]
