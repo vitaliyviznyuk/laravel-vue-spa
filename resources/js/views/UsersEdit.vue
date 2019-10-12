@@ -10,14 +10,14 @@
                 <label for="user_name">Name</label>
                 <input id="user_name" v-model="user.name" />
                 <div v-if="errors.name" class="error">
-                    <p>{{ errors.name }}</p>
+                    <p>{{ errors.name ? errors.name[0] : '' }}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label for="user_email">Email</label>
                 <input id="user_email" type="email" v-model="user.email" />
                 <div v-if="errors.email" class="error">
-                    <p>{{ errors.email }}</p>
+                    <p>{{ errors.email ? errors.email[0] : '' }}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -37,10 +37,7 @@
                 loaded: false,
                 saving: false,
                 error: null,
-                errors: {
-                    name: null,
-                    email: null
-                },
+                errors: {},
                 user: {
                     id: null,
                     name: "",
@@ -62,8 +59,7 @@
                     this.user = response.data.data;
                 }).catch(error => {
                     this.error = error.response.data.message;
-                    this.errors.name = error.response.data.errors.hasOwnProperty('name') ? error.response.data.errors.name[0] : null;
-                    this.errors.email = error.response.data.errors.hasOwnProperty('email') ? error.response.data.errors.email[0] : null;
+                    this.errors = error.response.data.errors;
                 }).then(_ => this.saving = false);
             },
             cancel() {
@@ -71,8 +67,7 @@
             },
             clearErrors() {
                 this.error = null;
-                this.errors.name = null;
-                this.errors.email = null;
+                this.errors = {};
             }
         },
         created() {

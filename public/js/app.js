@@ -1904,10 +1904,7 @@ __webpack_require__.r(__webpack_exports__);
       loaded: false,
       saving: false,
       error: null,
-      errors: {
-        name: null,
-        email: null
-      },
+      errors: {},
       user: {
         id: null,
         name: "",
@@ -1933,8 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.user = response.data.data;
       })["catch"](function (error) {
         _this.error = error.response.data.message;
-        _this.errors.name = error.response.data.errors.hasOwnProperty('name') ? error.response.data.errors.name[0] : null;
-        _this.errors.email = error.response.data.errors.hasOwnProperty('email') ? error.response.data.errors.email[0] : null;
+        _this.errors = error.response.data.errors;
       }).then(function (_) {
         return _this.saving = false;
       });
@@ -1944,8 +1940,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearErrors: function clearErrors() {
       this.error = null;
-      this.errors.name = null;
-      this.errors.email = null;
+      this.errors = {};
     }
   },
   created: function created() {
@@ -3391,7 +3386,9 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.name
                 ? _c("div", { staticClass: "error" }, [
-                    _c("p", [_vm._v(_vm._s(_vm.errors.name))])
+                    _c("p", [
+                      _vm._v(_vm._s(_vm.errors.name ? _vm.errors.name[0] : ""))
+                    ])
                   ])
                 : _vm._e()
             ]),
@@ -3422,7 +3419,11 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.email
                 ? _c("div", { staticClass: "error" }, [
-                    _c("p", [_vm._v(_vm._s(_vm.errors.email))])
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(_vm.errors.email ? _vm.errors.email[0] : "")
+                      )
+                    ])
                   ])
                 : _vm._e()
             ]),
@@ -18806,14 +18807,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./resources/js/views/UsersEdit.vue ***!
   \******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UsersEdit_vue_vue_type_template_id_15a35523_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UsersEdit.vue?vue&type=template&id=15a35523&scoped=true& */ "./resources/js/views/UsersEdit.vue?vue&type=template&id=15a35523&scoped=true&");
 /* harmony import */ var _UsersEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsersEdit.vue?vue&type=script&lang=js& */ "./resources/js/views/UsersEdit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _UsersEdit_vue_vue_type_style_index_0_id_15a35523_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UsersEdit.vue?vue&type=style&index=0&id=15a35523&lang=scss&scoped=true& */ "./resources/js/views/UsersEdit.vue?vue&type=style&index=0&id=15a35523&lang=scss&scoped=true&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _UsersEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _UsersEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _UsersEdit_vue_vue_type_style_index_0_id_15a35523_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UsersEdit.vue?vue&type=style&index=0&id=15a35523&lang=scss&scoped=true& */ "./resources/js/views/UsersEdit.vue?vue&type=style&index=0&id=15a35523&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -18845,7 +18847,7 @@ component.options.__file = "resources/js/views/UsersEdit.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/views/UsersEdit.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18976,8 +18978,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\server\data\htdocs\laravel-vue-spa\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\server\data\htdocs\laravel-vue-spa\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/devseonet8/projects/laravel-vue-spa/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/devseonet8/projects/laravel-vue-spa/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
