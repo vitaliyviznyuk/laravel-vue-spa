@@ -22,4 +22,5 @@ Route::namespace('Api')->group(static function () {
     Route::get('/users', 'UsersController@index');
     Route::get('/users/{user}', 'UsersController@show');
     Route::put('/users/{user}', 'UsersController@update');
+    Route::delete('/users/{user}', 'UsersController@destroy');
 });

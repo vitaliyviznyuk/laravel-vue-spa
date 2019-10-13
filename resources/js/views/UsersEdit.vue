@@ -22,7 +22,8 @@
             </div>
             <div class="form-group">
                 <button type="submit" :disabled="saving">Update</button>
-                <button :disabled="saving" @click.prevent="cancel">Cancel</button>
+                <button :disabled="saving" @click.prevent="onDelete($event)">Delete</button>
+                <button :disabled="saving" @click.prevent="onCancel($event)">Cancel</button>
             </div>
         </form>
     </div>
@@ -62,7 +63,15 @@
                     this.errors = error.response.data.errors;
                 }).then(_ => this.saving = false);
             },
-            cancel() {
+            onDelete(event) {
+                this.saving = true;
+                api.delete(this.user.id)
+                    .then((response) => {
+                        this.message = 'User Deleted';
+                        setTimeout(() => this.$router.push({ name: 'users.index' }), 2000);
+                    });
+            },
+            onCancel(event) {
                 history.back();
             },
             clearErrors() {
