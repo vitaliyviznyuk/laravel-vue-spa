@@ -17,4 +17,7 @@ export default {
     delete(id) {
         return client.delete(`users/${id}`);
     },
+    create(data) {
+        return client.post('users', data);
+    },
 };

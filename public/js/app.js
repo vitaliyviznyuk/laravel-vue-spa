@@ -1892,6 +1892,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1902,13 +1911,35 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         password: ''
-      }
+      },
+      errors: {}
     };
   },
   methods: {
     onSubmit: function onSubmit($event) {
+      var _this = this;
+
       this.saving = true;
       this.message = false;
+      _api_users__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.user).then(function (response) {
+        _this.clearErrors();
+
+        _this.$router.push({
+          name: 'users.edit',
+          params: {
+            id: response.data.data.id
+          }
+        });
+      })["catch"](function (error) {
+        _this.message = error.response.data.message || 'There was an issue creating the user.';
+        _this.errors = error.response.data.errors;
+      }).then(function () {
+        return _this.saving = false;
+      });
+    },
+    clearErrors: function clearErrors() {
+      this.message = null;
+      this.errors = {};
     }
   }
 });
@@ -3541,7 +3572,15 @@ var render = function() {
                 _vm.$set(_vm.user, "name", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.name
+            ? _c("div", { staticClass: "error" }, [
+                _c("p", [
+                  _vm._v(_vm._s(_vm.errors.name ? _vm.errors.name[0] : ""))
+                ])
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -3566,7 +3605,15 @@ var render = function() {
                 _vm.$set(_vm.user, "email", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.email
+            ? _c("div", { staticClass: "error" }, [
+                _c("p", [
+                  _vm._v(_vm._s(_vm.errors.email ? _vm.errors.email[0] : ""))
+                ])
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -3593,7 +3640,17 @@ var render = function() {
                 _vm.$set(_vm.user, "password", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.password
+            ? _c("div", { staticClass: "error" }, [
+                _c("p", [
+                  _vm._v(
+                    _vm._s(_vm.errors.password ? _vm.errors.password[0] : "")
+                  )
+                ])
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -18893,6 +18950,9 @@ var client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
   },
   "delete": function _delete(id) {
     return client["delete"]("users/".concat(id));
+  },
+  create: function create(data) {
+    return client.post('users', data);
   }
 });
 
