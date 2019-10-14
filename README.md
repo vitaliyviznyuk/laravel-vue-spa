@@ -2,5 +2,6 @@
 
 ## About application
 
-This simple application demonstrates how to get up and running with Vue router and a 
-Laravel backend for building a SPA. It demonstrates using Laravel as the API layer.
+This simple application shows how to get up and running with Vue router 
+and a Laravel backend for building a SPA. It demonstrates using Laravel 
+as the API layer.
